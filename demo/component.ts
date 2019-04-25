@@ -76,7 +76,6 @@ export class DemoComponent {
 
   eventClicked({ event }: { event: CalendarEvent }): void {
     console.log('Event clicked', event);
-  
   }
 
 eventTimesChanged({
