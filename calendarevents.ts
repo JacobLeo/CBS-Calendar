@@ -1,8 +1,8 @@
 import { CalendarEvent, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { addHours, startOfDay } from 'date-fns';
-import { USERS } from '../users'; 
+import { USERS } from './users'; 
 
-export const CALEVENTS: CalendarEvent[] =  [
+export const CALEVENT: CalendarEvent[] =  [
   {
       title: 'Lukkevagt',
       color: USERS[0].color,
@@ -43,4 +43,4 @@ export const CALEVENTS: CalendarEvent[] =  [
       },
       draggable: true
     }
-]
+]; 

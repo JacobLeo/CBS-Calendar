@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CalendarEvent, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { colors } from '../demo-utils/colors';
 import { addHours, startOfDay } from 'date-fns';
-import { CALEVENTS } from '../calendarevents'; 
+import { CALEVENT } from '../calendarevents'; 
 
 
 @Component({
@@ -16,8 +16,8 @@ export class DemoComponent {
   view: string = 'month';
   
   viewDate: Date = new Date();
-  
-  events: CALEVENTS[]; 
+
+  events: CalendarEvent = CALEVENT; 
 
  
 
