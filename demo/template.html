@@ -10,6 +10,9 @@
     [refresh]="refresh"
     (eventClicked)="eventClicked($event)"
     (eventTimesChanged)="eventTimesChanged($event)"
+    [locale]="locale"
+    [weekStartsOn]="weekStartsOn"
+    [weekendDays]="weekendDays"
   >
   </mwl-calendar-month-view>
   <mwl-calendar-week-view
@@ -19,6 +22,9 @@
     [refresh]="refresh"
     (eventClicked)="eventClicked($event)"
     (eventTimesChanged)="eventTimesChanged($event)"
+    [locale]="locale"
+    [weekStartsOn]="weekStartsOn"
+    [weekendDays]="weekendDays"
   >
   </mwl-calendar-week-view>
  <mwl-day-view-scheduler
@@ -29,6 +35,7 @@
   (eventClicked)="eventClicked($event)"
   (eventTimesChanged)="eventTimesChanged($event)"
   (userChanged)="userChanged($event)"
+  [locale]="locale"
 >
 </mwl-day-view-scheduler>
 
@@ -52,20 +59,29 @@
       <div *ngIf="selectedEvent" class="modal-body">
 
         <div>
-          <h2>{{selectedEvent.title | uppercase}} Details</h2>
-            <div><span>Title: </span>{{selectedEvent.title}}</div>
+          <h2>{{selectedEvent.title | uppercase}}</h2>
+            
               <div>
-                <label>name:
+                <label>Her kan du redigere navnet på begivenheden.
                   <input [(ngModel)]="selectedEvent.title" placeholder="name"/>
                 </label>
                </div>
-             </div>
+             
+             <h2> Det er {{selectedEvent.meta.user.name}}s vagt </h2>
+             <div>
+               <select class ="users" [(ngModel)]="selectedUser" (change)="onSelect(selectedUser, selectedEvent)"> 
+              
+                 <option *ngFor="let user of users"
+                 [class.selected]="user === selectedUser"
+                 [ngValue]="user">
+                <span class="badge">{{user.name}}</span>
+                 </option>
+              
+              </select>
+              </div>
          </div>
 
-        <div class="datepicker"> 
-        
-        </div>
-
+    
       <div class="modal-footer">
 
         <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>

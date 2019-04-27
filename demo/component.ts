@@ -1,25 +1,30 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { CalendarEvent, CalendarEventTimesChangedEvent } from 'angular-calendar';
+import { CalendarEvent, CalendarEventTimesChangedEvent, CalendarDateFormatter, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { colors } from '../demo-utils/colors';
 import { addHours, startOfDay } from 'date-fns';
 import { Subject } from 'rxjs';
 import { USERS } from '../users'; 
+import { User } from '../user'; 
 
 
 @Component({
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: 'template.html'
+  templateUrl: 'template.html',
 })
 
 
 export class DemoComponent {
   view: string = 'month';
+
+  viewDate = new Date();
+
+  users = USERS; 
+
+  selectedUser: User; 
   
   selectedEvent: CalendarEvent; 
 
-
-  viewDate: Date = new Date();
 
   events: CalendarEvent[] =  [
   {
@@ -149,5 +154,8 @@ eventTimesChanged({
   }
 refresh: Subject<any> = new Subject();
 
+onSelect(user: User, event: CalendarEvent){
+  this.selectedUser = this.selectedEvent.meta.user
+}
 
 }
