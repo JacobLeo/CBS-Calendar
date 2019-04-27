@@ -2,8 +2,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CalendarEvent, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { colors } from '../demo-utils/colors';
 import { addHours, startOfDay } from 'date-fns';
-import { CALEVENT } from '../calendarevents'; 
 import { Subject } from 'rxjs';
+import { USERS } from '../users'; 
 
 
 @Component({
@@ -18,13 +18,105 @@ export class DemoComponent {
   
   selectedEvent: CalendarEvent; 
 
+
   viewDate: Date = new Date();
 
-  events: CalendarEvent = CALEVENT; 
+  events: CalendarEvent[] =  [
+  {
+      title: 'Lukkevagt',
+      color: USERS[0].color,
+      start: addHours(startOfDay(new Date()), 5),
+      meta: {
+        user: USERS[0]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+       actions: [
+        {
+          label: '<i class="fa fa-fw fa-pencil"></i>',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            this.selectedEvent = event; 
+            this.display = "block"; 
+            console.log('Edit event', event);
+          }
+        },
+        {
+          label: '<i class="fa fa-fw fa-times"></i>',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            this.events = this.events.filter(iEvent => iEvent !== event);
+            console.log('Event deleted', event);
+          }
+        }
+      ],
+      draggable: true
+    },
+     {
+      title: 'Åbnevagt',
+      color: USERS[1].color,
+      start: addHours(startOfDay(new Date()), 2),
+      end: addHours(startOfDay(new Date()), 10),
+      meta: {
+        user: USERS[1]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      actions: [
+        {
+          label: '<i class="fa fa-fw fa-pencil"></i>',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            this.selectedEvent = event; 
+            this.display = "block"; 
+            console.log('Edit event', event);
+          }
+        },
+        {
+          label: '<i class="fa fa-fw fa-times"></i>',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            this.events = this.events.filter(iEvent => iEvent !== event);
+            console.log('Event deleted', event);
+          }
+        }
+      ],
+      draggable: true
+    },
+    {
+      title: 'Vikar vagt',
+      color: USERS[1].color,
+      start: addHours(startOfDay(new Date()), 500),
+      meta: {
+        user: USERS[1]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      actions: [
+        {
+          label: '<i class="fa fa-fw fa-pencil"></i>',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            this.selectedEvent = event; 
+            this.display = "block"; 
+            console.log('Edit event', event);
+          }
+        },
+        {
+          label: '<i class="fa fa-fw fa-times"></i>',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            this.events = this.events.filter(iEvent => iEvent !== event);
+            console.log('Event deleted', event);
+          }
+        }
+      ],
+      draggable: true
+    }
+];  
 
 
-
- display = 'none'; 
+  display = 'none'; 
 
   eventClicked({ event }: { event: CalendarEvent }): void {
     this.selectedEvent = event; 
@@ -50,6 +142,10 @@ eventTimesChanged({
 
   onCloseHandled (){
     this.display = 'none'; 
+  }
+
+  openDialog (){
+    this.display = 'block'; 
   }
 refresh: Subject<any> = new Subject();
 
