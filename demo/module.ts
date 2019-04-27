@@ -5,10 +5,12 @@ import { DemoUtilsModule } from '../demo-utils/module';
 import { DemoComponent } from './component';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { DayViewSchedulerComponent } from './day-view-scheduler.component';
+import { FormsModule } from '@angular/forms';  
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule, 
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory

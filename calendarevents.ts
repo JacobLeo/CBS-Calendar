@@ -1,6 +1,7 @@
 import { CalendarEvent, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { addHours, startOfDay } from 'date-fns';
 import { USERS } from './users'; 
+import { eventClicked } from './demo/component';
 
 export const CALEVENT: CalendarEvent[] =  [
   {
@@ -14,6 +15,15 @@ export const CALEVENT: CalendarEvent[] =  [
         beforeStart: true,
         afterEnd: true
       },
+      actions: [
+        {
+          label: '<i class="fa fa-fw fa-pencil"></i>',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            console.log('Edit event', event);
+            eventClicked(); 
+          }
+        }
+      ],
       draggable: true
     },
      {

@@ -7,23 +7,73 @@
     [viewDate]="viewDate"
     [events]="events"
     [activeDayIsOpen]="true"
+    [refresh]="refresh"
     (eventClicked)="eventClicked($event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
   >
   </mwl-calendar-month-view>
   <mwl-calendar-week-view
     *ngSwitchCase="'week'"
     [viewDate]="viewDate"
     [events]="events"
+    [refresh]="refresh"
     (eventClicked)="eventClicked($event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
   >
   </mwl-calendar-week-view>
  <mwl-day-view-scheduler
   *ngSwitchCase="'day'"
   [viewDate]="viewDate"
   [events]="events"
+  [refresh]="refresh"
+  (eventClicked)="eventClicked($event)"
   (eventTimesChanged)="eventTimesChanged($event)"
   (userChanged)="userChanged($event)"
 >
 </mwl-day-view-scheduler>
 
 </div>
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+
+        <h4 class="modal-title">Rediger vagt</h4>
+
+      </div>
+
+      <div *ngIf="selectedEvent" class="modal-body">
+
+        <div>
+          <h2>{{selectedEvent.title | uppercase}} Details</h2>
+            <div><span>Title: </span>{{selectedEvent.title}}</div>
+              <div>
+                <label>name:
+                  <input [(ngModel)]="selectedEvent.title" placeholder="name"/>
+                </label>
+               </div>
+             </div>
+         </div>
+
+        <div class="datepicker"> 
+        
+        </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+
+      </div>
+
+    </div><!-- /.modal-content -->
+
+  </div><!-- /.modal-dialog -->
+
+</div><!-- /.modal !-->
