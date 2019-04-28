@@ -13,5 +13,9 @@ export const USERS: User[] = [
     name: 'Henrik',
     color: colors.blue
   },
- 
+ {
+   id: 2, 
+   name: 'Søren',
+   color: colors.red
+ }
 ];

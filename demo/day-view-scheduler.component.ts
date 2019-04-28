@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Injectable, Output } from '@angular/core';
 import { CalendarDayViewComponent, CalendarUtils } from 'angular-calendar';
 import { DayView, DayViewEvent, GetDayViewArgs } from 'calendar-utils';
+import { USERS } from '../users'; 
 
 const EVENT_WIDTH = 150;
 
 // extend the interface to add the array of users
 interface DayViewScheduler extends DayView {
-  users: any[];
+  users: any[]; 
 }
 
 @Injectable()
@@ -14,7 +15,7 @@ export class DayViewSchedulerCalendarUtils extends CalendarUtils {
   getDayView(args: GetDayViewArgs): DayViewScheduler {
     const view: DayViewScheduler = {
       ...super.getDayView(args),
-      users: []
+      users: USERS,
     };
     view.events.forEach(({ event }) => {
       // assumes user objects are the same references,

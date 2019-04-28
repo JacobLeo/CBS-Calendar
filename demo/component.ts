@@ -11,6 +11,7 @@ import { User } from '../user';
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'template.html',
+  styleUrls:['style.css'],
 })
 
 
@@ -90,10 +91,10 @@ export class DemoComponent {
     },
     {
       title: 'Vikar vagt',
-      color: USERS[1].color,
-      start: addHours(startOfDay(new Date()), 500),
+      color: USERS[2].color,
+      start: addHours(startOfDay(new Date()), 4),
       meta: {
-        user: USERS[1]
+        user: USERS[2]
       },
       resizable: {
         beforeStart: true,
@@ -152,6 +153,7 @@ eventTimesChanged({
   openDialog (){
     this.display = 'block'; 
   }
+
 refresh: Subject<any> = new Subject();
 
 onSelect(user: User, event: CalendarEvent){
