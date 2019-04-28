@@ -67,18 +67,13 @@
                 </label>
                </div>
              
-             <h2> Det er {{selectedEvent.meta.user.name}}s vagt </h2>
+             <h3> Det er {{selectedEvent.meta.user.name}}s vagt </h3>
              <div>
-               <select class ="users" [(ngModel)]="selectedUser" (change)="onSelect(selectedUser, selectedEvent)"> 
-              
-                 <option *ngFor="let user of users"
-                 [class.selected]="user === selectedUser"
-                 [ngValue]="user">
-                <span class="badge">{{user.name}}</span>
-                 </option>
-              
-              </select>
-              </div>
+                <label>Her kan du redigere hvis vagt det er 
+                  <br>
+                  <input [(ngModel)]="selectedEvent.meta.user.name" placeholder="name"/>
+                </label>
+               </div>
          </div>
 
     
