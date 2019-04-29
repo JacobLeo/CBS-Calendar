@@ -5,6 +5,7 @@ import { addHours, startOfDay } from 'date-fns';
 import { Subject } from 'rxjs';
 import { USERS } from '../users'; 
 import { User } from '../user'; 
+import localeFr from '@angular/common/locales/da'; 
 
 
 @Component({
@@ -16,6 +17,7 @@ import { User } from '../user';
 
 
 export class DemoComponent {
+  registerLocaleData(localeDa);
   view: string = 'month';
 
   viewDate = new Date();
