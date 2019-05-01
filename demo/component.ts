@@ -31,7 +31,7 @@ export class DemoComponent {
 
   events: CalendarEvent[] =  [
   {
-      title: 'Lukkevagt',
+      title: USERS[0].name,
       color: USERS[0].color,
       start: addHours(startOfDay(new Date()), 5),
       meta: {
@@ -61,7 +61,7 @@ export class DemoComponent {
       draggable: true
     },
      {
-      title: 'Åbnevagt',
+      title: USERS[1].name,
       color: USERS[1].color,
       start: addHours(startOfDay(new Date()), 2),
       end: addHours(startOfDay(new Date()), 10),
@@ -92,7 +92,7 @@ export class DemoComponent {
       draggable: true
     },
     {
-      title: 'Vikar vagt',
+      title: USERS[2].name,
       color: USERS[2].color,
       start: addHours(startOfDay(new Date()), 4),
       meta: {
