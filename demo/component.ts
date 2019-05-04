@@ -1,7 +1,16 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CalendarEvent, CalendarEventTimesChangedEvent, CalendarDateFormatter, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { colors } from '../demo-utils/colors';
-import { addHours, startOfDay } from 'date-fns';
+import {
+  startOfDay,
+  endOfDay,
+  subDays,
+  addDays,
+  endOfMonth,
+  isSameDay,
+  isSameMonth,
+  addHours
+} from 'date-fns';
 import { Subject } from 'rxjs';
 import { USERS } from '../users'; 
 import { User } from '../user'; 
@@ -32,7 +41,7 @@ export class DemoComponent {
   {
       title: USERS[0].name,
       color: USERS[0].color,
-      start: addHours(startOfDay(new Date()), 5),
+      start: addHours(startOfDay(new Date()), 100),
       meta: {
         user: USERS[0]
       },
@@ -160,5 +169,28 @@ refresh: Subject<any> = new Subject();
 onSelect(user: User, event: CalendarEvent){
   this.selectedUser = this.selectedEvent.meta.user
 }
+
+ activeDayIsOpen: boolean = false;
+
+ dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      this.viewDate = date;
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+        this.refresh.next(); 
+        console.log('lukker2');
+        
+      } else {
+        this.activeDayIsOpen = true;
+        console.log('åbner');
+        this.refresh.next(); 
+      }
+    }
+  }
+
+
 
 }

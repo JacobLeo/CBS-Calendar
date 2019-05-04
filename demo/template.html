@@ -1,14 +1,14 @@
 <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
 </mwl-demo-utils-calendar-header>
 
-<button type="button" class="btn btn-info btn-lg" > Opret vagt </button>
 
 <div [ngSwitch]="view">
   <mwl-calendar-month-view
     *ngSwitchCase="'month'"
     [viewDate]="viewDate"
     [events]="events"
-    [activeDayIsOpen]="true"
+    (dayClicked)="dayClicked($event.day)"
+    [activeDayIsOpen]="activeDayIsOpen"
     [refresh]="refresh"
     (eventClicked)="eventClicked($event)"
     (eventTimesChanged)="eventTimesChanged($event)"
