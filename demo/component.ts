@@ -17,7 +17,6 @@ import localeFr from '@angular/common/locales/da';
 
 
 export class DemoComponent {
-  registerLocaleData(localeDa);
   view: string = 'month';
 
   viewDate = new Date();
